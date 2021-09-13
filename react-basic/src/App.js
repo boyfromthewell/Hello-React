@@ -1,32 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function App() {
-  const [userName, setUserName] = useState("");
-  const [Password, setPassword] = useState("");
+  const [count, setCount] = useState(0);
+  const [kwon, setKwon] = useState(0);
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    alert("submitted");
-    console.log(userName, Password);
+  useEffect(() => {
+    console.log(count);
+  }, [count, kwon]);
+
+  useEffect(()=>{
+    console.log('first rendering');
+  },[]) //[] 처음 렌더링 했을때만 실행
+
+  const increment = () => {
+    setCount(count + 1);
   };
-
   return (
     <div className="App">
-      <form onSubmit={onSubmit}>
-        <input
-          placeholder="UserName"
-          value={userName}
-          onChange={(event) => setUserName(event.target.value)}
-        />
-        <br />
-        <input
-          placeholder="Password"
-          value={Password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-        <br />
-        <button type="submit">Login</button>
-      </form>
+      <h1>soon</h1>
+      <button onClick={increment}>click</button>
+      <button onClick={() => setKwon(kwon + 1)}>click1</button>
     </div>
   );
 }
