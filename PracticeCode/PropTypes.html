@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="root">
+    </div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+<script type="text/babel">
+    function Btn({ text, fontSize }) { // {props}
+        //propType: 어떤 타입의 prop을 받고 있는지를 체크해줌
+        return <button style={{
+            backgroundColor: "pink",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize,
+        }}>{text}</button>;
+    }
+    Btn.propTypes = { //propType 정의 가능, text는 string이고 fontSize는 num임을 알려주기
+        text: PropTypes.string.isRequired, // isReguired: 필수로 넣어줘야하는 옵션 정의
+        fontSize: PropTypes.number,
+    };
+    function App() { // props 인자 전달가능
+        return (
+            <div>
+                <Btn text="Save Changes" fontSize={18} />
+                <Btn text={14} fontSize={"Continue"} /> {/*위와 같은 오류 잡아줌*/}
+            </div>
+        );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+
+</script>
+
+</html>
